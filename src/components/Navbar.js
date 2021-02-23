@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.svg";
 import { FaBars } from "react-icons/fa";
@@ -9,6 +9,10 @@ import CartButtons from "./CartButtons";
 // import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   return (
     <NavContainer>
       <div className="nav-center">
@@ -16,7 +20,7 @@ const Nav = () => {
           <Link to="/">
             <img src={logo} alt="comfy sloth" />
           </Link>
-          <button type="button" className="nav-toggle">
+          <button type="button" className="nav-toggle" onClick={toggleSidebar}>
             <FaBars />
           </button>
         </div>
