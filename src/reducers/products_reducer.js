@@ -28,29 +28,38 @@ export const sidebarReducer = (state = { isSidebarOpen: false }, action) => {
 };
 
 export const productsListReducer = (
-  state = { loading: false, products: [], error: false },
+  state = {
+    products_loading: false,
+    products: [],
+    featured_products: [],
+    products_error: false,
+  },
   action
 ) => {
   if (action.type === GET_PRODUCTS_BEGIN) {
     return {
       ...state,
-      loading: true,
+      products_loading: true,
     };
   }
 
   if (action.type === GET_PRODUCTS_SUCCESS) {
+    const featured_products = action.payload.filter(
+      (product) => product.featured === true
+    );
     return {
       ...state,
-      loading: false,
+      products_loading: false,
       products: action.payload,
+      featured_products,
     };
   }
 
   if (action.type === GET_PRODUCTS_ERROR) {
     return {
       ...state,
-      loading: false,
-      error: action.payload,
+      products_loading: false,
+      products_error: action.payload,
     };
   }
   return state;

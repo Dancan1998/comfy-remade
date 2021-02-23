@@ -12,7 +12,8 @@ const FeaturedProducts = () => {
   const dispatch = useDispatch();
 
   const productsList = useSelector((state) => state.productsList);
-  const { images, price, featured } = productsList;
+  const { featured_products } = productsList;
+  console.log(featured_products);
 
   useEffect(() => {
     dispatch(productslist());
