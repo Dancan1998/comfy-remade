@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.svg";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { links } from "../utils/constants";
 import CartButtons from "./CartButtons";
-// import { useProductsContext } from '../context/products_context'
-// import { useUserContext } from '../context/user_context'
+import { useDispatch } from "react-redux";
+import { openSidebar } from "../actions/productActions";
 
 const Nav = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  const dispatch = useDispatch();
+
   return (
     <NavContainer>
       <div className="nav-center">
@@ -20,7 +18,11 @@ const Nav = () => {
           <Link to="/">
             <img src={logo} alt="comfy sloth" />
           </Link>
-          <button type="button" className="nav-toggle" onClick={toggleSidebar}>
+          <button
+            type="button"
+            className="nav-toggle"
+            onClick={() => dispatch(openSidebar())}
+          >
             <FaBars />
           </button>
         </div>
