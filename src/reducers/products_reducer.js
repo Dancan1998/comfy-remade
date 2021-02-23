@@ -9,7 +9,7 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
 } from "../constants";
 
-export const products_reducer = (state = { isSidebarOpen: false }, action) => {
+export const sidebarReducer = (state = { isSidebarOpen: false }, action) => {
   if (action.type === SIDEBAR_OPEN) {
     return {
       ...state,
@@ -27,4 +27,31 @@ export const products_reducer = (state = { isSidebarOpen: false }, action) => {
   return state;
 };
 
-export default products_reducer;
+export const productsListReducer = (
+  state = { loading: false, products: [], error: false },
+  action
+) => {
+  if (action.type === GET_PRODUCTS_BEGIN) {
+    return {
+      ...state,
+      loading: true,
+    };
+  }
+
+  if (action.type === GET_PRODUCTS_SUCCESS) {
+    return {
+      ...state,
+      loading: false,
+      products: action.payload,
+    };
+  }
+
+  if (action.type === GET_PRODUCTS_ERROR) {
+    return {
+      ...state,
+      loading: false,
+      error: action.payload,
+    };
+  }
+  return state;
+};

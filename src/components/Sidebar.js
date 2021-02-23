@@ -11,8 +11,8 @@ import { closeSidebar } from "../actions/productActions";
 const Sidebar = () => {
   const dispatch = useDispatch();
 
-  const productsContext = useSelector((state) => state.productsContext);
-  const { isSidebarOpen } = productsContext;
+  const sidebarContext = useSelector((state) => state.sidebarContext);
+  const { isSidebarOpen } = sidebarContext;
 
   return (
     <SidebarContainer>
