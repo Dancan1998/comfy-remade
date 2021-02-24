@@ -64,3 +64,34 @@ export const productsListReducer = (
   }
   return state;
 };
+
+export const singleProductReducer = (
+  state = { single_product: {}, error: false, loading: false },
+  action
+) => {
+  if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
+    return {
+      ...state,
+      loading: true,
+      error: false,
+    };
+  }
+
+  if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
+    return {
+      ...state,
+      loading: false,
+      single_product: action.payload,
+    };
+  }
+
+  if (action.type === GET_SINGLE_PRODUCT_ERROR) {
+    return {
+      ...state,
+      loading: false,
+      error: action.payload,
+    };
+  }
+
+  return state;
+};

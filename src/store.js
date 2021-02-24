@@ -4,11 +4,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   sidebarReducer,
   productsListReducer,
+  singleProductReducer,
 } from "./reducers/products_reducer";
 
 const reducer = combineReducers({
   sidebarContext: sidebarReducer,
   productsList: productsListReducer,
+  singleProductContext: singleProductReducer,
 });
 
 const middleware = [thunk];

@@ -35,3 +35,21 @@ export const productslist = () => async (dispatch) => {
     });
   }
 };
+
+export const singleProduct = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
+
+    const { data } = await http.get(`/api/products/${id}`);
+
+    dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_SINGLE_PRODUCT_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
