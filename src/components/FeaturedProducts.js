@@ -12,14 +12,37 @@ const FeaturedProducts = () => {
   const dispatch = useDispatch();
 
   const productsList = useSelector((state) => state.productsList);
-  const { featured_products } = productsList;
-  console.log(featured_products);
+  const {
+    products_loading: loading,
+    featured_products: featured,
+    products_error: error,
+  } = productsList;
 
   useEffect(() => {
     dispatch(productslist());
   }, [dispatch]);
 
-  return <h4>featured products</h4>;
+  return (
+    <>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error variant="danger">{error}</Error>
+      ) : (
+        <Wrapper className="section">
+          <div className="title">
+            <h2>featured products</h2>
+            <div className="underline"></div>
+          </div>
+          <div className="section-center featured">
+            {featured.slice(0, 3).map((product) => {
+              return <Product key={product.id} {...product} />;
+            })}
+          </div>
+        </Wrapper>
+      )}
+    </>
+  );
 };
 
 const Wrapper = styled.section`

@@ -1,6 +1,15 @@
-import React from 'react'
-const Error = () => {
-  return <h4>error element</h4>
-}
+import React from "react";
+import { Alert } from "react-bootstrap";
+const Error = ({ variant, children }) => {
+  return (
+    <Alert variant={variant} className="section section-center text-center">
+      <h2>{children}</h2>
+    </Alert>
+  );
+};
 
-export default Error
+Error.defaultProps = {
+  variant: "info",
+};
+
+export default Error;
