@@ -1,9 +1,10 @@
 import React from "react";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+
 const Error = ({ variant, children }) => {
   return (
     <Alert variant={variant} className="section section-center text-center">
-      <h2>{children}</h2>
+      <h4>{children}</h4>
     </Alert>
   );
 };
@@ -13,3 +14,5 @@ Error.defaultProps = {
 };
 
 export default Error;
+
+// className = "section section-center text-center";

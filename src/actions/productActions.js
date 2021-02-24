@@ -22,7 +22,7 @@ export const productslist = () => async (dispatch) => {
   try {
     dispatch({ type: GET_PRODUCTS_BEGIN });
 
-    const { data } = await http.get("/api/products");
+    const { data } = await http.get("/api/product");
 
     dispatch({ type: GET_PRODUCTS_SUCCESS, payload: data });
   } catch (error) {
