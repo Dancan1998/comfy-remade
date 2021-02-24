@@ -45,13 +45,11 @@ const SingleProductPage = ({ match, history }) => {
     name,
     price,
     description,
-    stars,
     countInStock,
     images,
-    stars: product_stars,
+    stars,
     reviews,
     company,
-    id,
   } = single_product;
 
   return (
@@ -71,7 +69,7 @@ const SingleProductPage = ({ match, history }) => {
               <ProductImages images={images} />
               <section className="content">
                 <h2>{name}</h2>
-                <Stars reviews={reviews} stars={product_stars} />
+                <Stars reviews={reviews} stars={stars} />
                 <h5 className="price">{formatPrice(price)}</h5>
                 <p className="desc">{description}</p>
                 <p className="info">
@@ -85,7 +83,9 @@ const SingleProductPage = ({ match, history }) => {
                   {company}
                 </p>
                 <hr />
-                {countInStock > 0 && <AddToCart />}
+                {countInStock > 0 && (
+                  <AddToCart single_product={single_product} />
+                )}
               </section>
             </div>
           </div>
