@@ -16,12 +16,13 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { singleProduct } from "../actions/productActions";
 
-const SingleProductPage = ({ match }) => {
+const SingleProductPage = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const singleProductContext = useSelector(
     (state) => state.singleProductContext
   );
+
   const {
     loading: singleProductLoading,
     error: singleProductError,
@@ -32,7 +33,25 @@ const SingleProductPage = ({ match }) => {
     dispatch(singleProduct(match.params.id));
   }, [dispatch, match.params.id]);
 
-  return <h4>single product page</h4>;
+  useEffect(() => {
+    if (singleProductError) {
+      setTimeout(() => {
+        history.push("/");
+      }, 3000);
+    }
+  }, [history, singleProductError]);
+
+  return (
+    <>
+      {singleProductLoading ? (
+        <Loading />
+      ) : singleProductError ? (
+        <Error variant="danger">{singleProductError}</Error>
+      ) : (
+        "hi"
+      )}
+    </>
+  );
 };
 
 const Wrapper = styled.main`
