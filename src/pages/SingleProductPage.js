@@ -41,6 +41,19 @@ const SingleProductPage = ({ match, history }) => {
     }
   }, [history, singleProductError]);
 
+  const {
+    name,
+    price,
+    description,
+    stars,
+    countInStock,
+    images,
+    stars: product_stars,
+    reviews,
+    company,
+    id,
+  } = single_product;
+
   return (
     <>
       {singleProductLoading ? (
@@ -48,7 +61,35 @@ const SingleProductPage = ({ match, history }) => {
       ) : singleProductError ? (
         <Error variant="danger">{singleProductError}</Error>
       ) : (
-        "hi"
+        <Wrapper>
+          <PageHero title={name} product />
+          <div className="section page section-center">
+            <Link to="/products" className="btn">
+              back to products
+            </Link>
+            <div className="product-center">
+              <ProductImages />
+              <section className="content">
+                <h2>{name}</h2>
+                <Stars />
+                <h5 className="price">{formatPrice(price)}</h5>
+                <p className="desc">{description}</p>
+                <p className="info">
+                  <span>Available :</span>
+                  {countInStock > 0
+                    ? `${countInStock} in stock`
+                    : "Out of stock"}
+                </p>
+                <p className="info">
+                  <span>Brand :</span>
+                  {company}
+                </p>
+                <hr />
+                {countInStock > 0 && <AddToCart />}
+              </section>
+            </div>
+          </div>
+        </Wrapper>
       )}
     </>
   );
