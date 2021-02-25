@@ -24,11 +24,11 @@ const Product = ({ name, images, price, id }) => {
 const Wrapper = styled.article`
   .container {
     position: relative;
-    background: var(--clr-black);
     border-radius: var(--radius);
   }
   img {
     width: 100%;
+    background: var(--clr-black);
     display: block;
     object-fit: cover;
     border-radius: var(--radius);
@@ -70,6 +70,7 @@ const Wrapper = styled.article`
   footer p {
     margin-bottom: 0;
     font-weight: 400;
+    margin-left: 1rem;
   }
 
   footer p {

@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Filters, ProductList, Sort, PageHero } from "../components";
-import { useSelector, useDispatch } from "react-redux";
-import { filterProductslist } from "../actions/filterActions";
 
 const ProductsPage = () => {
-  const dispatch = useDispatch();
-  const filterProducts = useSelector((state) => state.filterProducts);
-  const { all_products } = filterProducts;
-  console.log(all_products);
-  useEffect(() => {
-    dispatch(filterProductslist());
-  }, [dispatch]);
-
-  return <h4>products page</h4>;
+  return (
+    <main>
+      <PageHero title="products" />
+      <Wrapper className="page">
+        <div className="section-center products">
+          <Filters />
+          <div>
+            <Sort />
+            <ProductList />
+          </div>
+        </div>
+      </Wrapper>
+    </main>
+  );
 };
 
 const Wrapper = styled.div`

@@ -1,10 +1,20 @@
-import React from 'react'
-import { useFilterContext } from '../context/filter_context'
-import GridView from './GridView'
-import ListView from './ListView'
+import React, { useEffect } from "react";
+import { useFilterContext } from "../context/filter_context";
+import GridView from "./GridView";
+import ListView from "./ListView";
+import { useSelector, useDispatch } from "react-redux";
+import { filterProductslist } from "../actions/filterActions";
 
 const ProductList = () => {
-  return <h4>product list</h4>
-}
+  const dispatch = useDispatch();
+  const filterProducts = useSelector((state) => state.filterProducts);
+  const { filtered_products: products } = filterProducts;
 
-export default ProductList
+  useEffect(() => {
+    dispatch(filterProductslist());
+  }, [dispatch]);
+
+  return <GridView products={products}></GridView>;
+};
+
+export default ProductList;
