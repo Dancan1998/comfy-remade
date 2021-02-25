@@ -19,6 +19,16 @@ export const filterReducer = (
     filtered_products: [],
     all_products: [],
     sort: "price-lowest",
+    filters: {
+      text: "",
+      company: "all",
+      category: "all",
+      color: "all",
+      min_price: 0,
+      max_price: 0,
+      price: 0,
+      shipping: false,
+    },
   },
   action
 ) => {
@@ -29,11 +39,18 @@ export const filterReducer = (
     };
   }
   if (action.type === GET_PRODUCTS_SUCCESS) {
+    let maxPrice = action.payload.map((product) => product.price);
+    maxPrice = Math.max(...maxPrice);
     return {
       ...state,
       loading: false,
       filtered_products: [...action.payload],
       all_products: [...action.payload],
+      filters: {
+        ...state.filters,
+        max_price: maxPrice,
+        price: maxPrice,
+      },
     };
   }
   if (action.type === GET_PRODUCTS_ERROR) {
