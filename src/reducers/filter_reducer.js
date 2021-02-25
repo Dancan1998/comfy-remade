@@ -18,6 +18,7 @@ export const filterReducer = (
     error: null,
     filtered_products: [],
     all_products: [],
+    grid_view: true,
   },
   action
 ) => {
