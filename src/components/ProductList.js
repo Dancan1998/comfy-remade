@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
-import { useFilterContext } from "../context/filter_context";
 import GridView from "./GridView";
 import ListView from "./ListView";
 import { useSelector, useDispatch } from "react-redux";
 import { filterProductslist } from "../actions/filterActions";
-import Loading from "./Loading";
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const filterProducts = useSelector((state) => state.filterProducts);
-  const { filtered_products: products, grid_view, loading } = filterProducts;
+  const { filtered_products: products, grid_view } = filterProducts;
 
   useEffect(() => {
     dispatch(filterProductslist());
@@ -21,9 +19,6 @@ const ProductList = () => {
         Sorry, no products matched your search
       </h3>
     );
-  }
-  if (loading) {
-    return <Loading />;
   }
 
   if (grid_view === false) {
