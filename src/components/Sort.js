@@ -2,13 +2,13 @@ import React from "react";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { setGridView, setListView } from "../actions/filterActions";
+import { setGridView, setListView, updateSort } from "../actions/filterActions";
 
 const Sort = () => {
   const dispatch = useDispatch();
 
   const filterProducts = useSelector((state) => state.filterProducts);
-  const { filtered_products: products } = filterProducts;
+  const { filtered_products: products, sort } = filterProducts;
 
   const viewLayout = useSelector((state) => state.viewLayout);
   const { grid_view } = viewLayout;
@@ -35,7 +35,13 @@ const Sort = () => {
       <hr />
       <form>
         <label htmlFor="sort">sort by</label>
-        <select name="sort" id="sort" className="sort-input">
+        <select
+          name="sort"
+          id="sort"
+          className="sort-input"
+          value={sort}
+          onChange={(e) => dispatch(updateSort(e))}
+        >
           <option value="price-lowest">price (lowest)</option>
           <option value="price-highest">price (highest)</option>
           <option value="name-a">name (a-z)</option>

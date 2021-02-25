@@ -18,6 +18,7 @@ export const filterReducer = (
     error: null,
     filtered_products: [],
     all_products: [],
+    sort: "price-lowest",
   },
   action
 ) => {
@@ -42,6 +43,7 @@ export const filterReducer = (
       error: action.payload,
     };
   }
+
   return state;
 };
 

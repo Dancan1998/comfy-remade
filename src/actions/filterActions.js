@@ -37,3 +37,9 @@ export const setGridView = () => (dispatch) => {
 export const setListView = () => (dispatch) => {
   dispatch({ type: SET_LISTVIEW });
 };
+
+export const updateSort = (e) => (dispatch) => {
+  const name = e.target.name;
+  const value = e.target.value;
+  console.log(name, value);
+};
