@@ -1,20 +1,11 @@
 import React, { useEffect } from "react";
 import GridView from "./GridView";
 import ListView from "./ListView";
-import { useSelector, useDispatch } from "react-redux";
-import { filterProductslist } from "../actions/filterActions";
+import { useSelector } from "react-redux";
 
-const ProductList = () => {
-  const dispatch = useDispatch();
-  const filterProducts = useSelector((state) => state.filterProducts);
-  const { filtered_products: products } = filterProducts;
-
+const ProductList = ({ products }) => {
   const viewLayout = useSelector((state) => state.viewLayout);
   const { grid_view } = viewLayout;
-
-  useEffect(() => {
-    dispatch(filterProductslist());
-  }, [dispatch]);
 
   if (products.length < 1) {
     return (

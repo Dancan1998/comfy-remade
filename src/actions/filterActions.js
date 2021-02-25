@@ -39,7 +39,10 @@ export const setListView = () => (dispatch) => {
 };
 
 export const updateSort = (e) => (dispatch) => {
-  const name = e.target.name;
   const value = e.target.value;
-  console.log(name, value);
+  dispatch({ type: UPDATE_SORT, payload: value });
 };
+
+export const sortProducts = () => (dispatch) => [
+  dispatch({ type: SORT_PRODUCTS }),
+];

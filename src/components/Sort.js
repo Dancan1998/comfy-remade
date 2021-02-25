@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { setGridView, setListView, updateSort } from "../actions/filterActions";
+import {
+  setGridView,
+  setListView,
+  updateSort,
+  sortProducts,
+} from "../actions/filterActions";
 
-const Sort = () => {
+const Sort = ({ products }) => {
   const dispatch = useDispatch();
 
   const filterProducts = useSelector((state) => state.filterProducts);
-  const { filtered_products: products, sort } = filterProducts;
+  const { sort } = filterProducts;
 
   const viewLayout = useSelector((state) => state.viewLayout);
   const { grid_view } = viewLayout;
+
+  useEffect(() => {
+    dispatch(sortProducts());
+  }, [dispatch, sort]);
 
   return (
     <Wrapper>
