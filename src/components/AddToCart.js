@@ -5,7 +5,7 @@ import { FaCheck } from "react-icons/fa";
 import AmountButtons from "./AmountButtons";
 
 const AddToCart = ({ single_product }) => {
-  const { id, countInStock, colors = [] } = single_product;
+  const { countInStock, colors = [] } = single_product;
   const [mainColor, setMainColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
 

@@ -1,10 +1,20 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Filters, ProductList, Sort, PageHero } from '../components'
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import { Filters, ProductList, Sort, PageHero } from "../components";
+import { useSelector, useDispatch } from "react-redux";
+import { filterProductslist } from "../actions/filterActions";
 
 const ProductsPage = () => {
-  return <h4>products page</h4>
-}
+  const dispatch = useDispatch();
+  const filterProducts = useSelector((state) => state.filterProducts);
+  const { all_products } = filterProducts;
+  console.log(all_products);
+  useEffect(() => {
+    dispatch(filterProductslist());
+  }, [dispatch]);
+
+  return <h4>products page</h4>;
+};
 
 const Wrapper = styled.div`
   .products {
@@ -17,6 +27,6 @@ const Wrapper = styled.div`
       grid-template-columns: 200px 1fr;
     }
   }
-`
+`;
 
-export default ProductsPage
+export default ProductsPage;
