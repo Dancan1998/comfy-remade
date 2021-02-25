@@ -1,15 +1,59 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useFilterContext } from '../context/filter_context'
-import { getUniqueValues, formatPrice } from '../utils/helpers'
-import { FaCheck } from 'react-icons/fa'
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import { getUniqueValues, formatPrice } from "../utils/helpers";
+import { FaCheck } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  updateFilters,
+  clearFilters,
+  filteringProducts,
+} from "../actions/filterActions";
 
 const Filters = () => {
-  return <h4>filters</h4>
-}
+  const dispatch = useDispatch();
+
+  const filterProducts = useSelector((state) => state.filterProducts);
+  const { filters, all_products } = filterProducts;
+
+  useEffect(() => {
+    dispatch(filteringProducts());
+  }, [dispatch, filters]);
+
+  const {
+    text,
+    company,
+    colors,
+    max_price,
+    min_price,
+    price,
+    shipping,
+    category,
+  } = filters;
+
+  return (
+    <Wrapper>
+      <div className="content">
+        <form onSubmit={(e) => e.preventDefault()}>
+          {/* search input */}
+          <div className="form-controll">
+            <input
+              type="text"
+              name="text"
+              placeholder="search"
+              className="search-input"
+              value={text}
+              onChange={(e) => dispatch(updateFilters(e))}
+            />
+          </div>
+          {/* end search input */}
+        </form>
+      </div>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.section`
-  .form-control {
+  .form-controll {
     margin-bottom: 1.25rem;
     h5 {
       margin-bottom: 0.5rem;
@@ -105,6 +149,6 @@ const Wrapper = styled.section`
       top: 1rem;
     }
   }
-`
+`;
 
-export default Filters
+export default Filters;

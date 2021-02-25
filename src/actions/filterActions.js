@@ -46,3 +46,15 @@ export const updateSort = (e) => (dispatch) => {
 export const sortProducts = () => (dispatch) => [
   dispatch({ type: SORT_PRODUCTS }),
 ];
+
+export const updateFilters = (e) => (dispatch) => {
+  let value = e.target.value;
+  let name = e.target.name;
+  dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
+};
+
+export const clearFilters = () => (dispatch) => {};
+
+export const filteringProducts = () => (dispatch) => {
+  dispatch({ type: FILTER_PRODUCTS });
+};
