@@ -7,7 +7,10 @@ import { filterProductslist } from "../actions/filterActions";
 const ProductList = () => {
   const dispatch = useDispatch();
   const filterProducts = useSelector((state) => state.filterProducts);
-  const { filtered_products: products, grid_view } = filterProducts;
+  const { filtered_products: products } = filterProducts;
+
+  const viewLayout = useSelector((state) => state.viewLayout);
+  const { grid_view } = viewLayout;
 
   useEffect(() => {
     dispatch(filterProductslist());

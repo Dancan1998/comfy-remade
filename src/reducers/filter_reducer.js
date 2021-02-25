@@ -18,7 +18,6 @@ export const filterReducer = (
     error: null,
     filtered_products: [],
     all_products: [],
-    grid_view: true,
   },
   action
 ) => {
@@ -41,6 +40,22 @@ export const filterReducer = (
       ...state,
       loading: false,
       error: action.payload,
+    };
+  }
+  return state;
+};
+
+export const viewLayoutReducer = (state = { grid_view: true }, action) => {
+  if (action.type === SET_GRIDVIEW) {
+    return {
+      ...state,
+      grid_view: true,
+    };
+  }
+  if (action.type === SET_LISTVIEW) {
+    return {
+      ...state,
+      grid_view: false,
     };
   }
   return state;

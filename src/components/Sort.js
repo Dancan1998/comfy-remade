@@ -1,19 +1,33 @@
 import React from "react";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setGridView, setListView } from "../actions/filterActions";
 
 const Sort = () => {
+  const dispatch = useDispatch();
+
   const filterProducts = useSelector((state) => state.filterProducts);
-  const { filtered_products: products, grid_view } = filterProducts;
+  const { filtered_products: products } = filterProducts;
+
+  const viewLayout = useSelector((state) => state.viewLayout);
+  const { grid_view } = viewLayout;
 
   return (
     <Wrapper>
       <div className="btn-container">
-        <button type="button" className={`${grid_view ? "active" : null}`}>
+        <button
+          type="button"
+          className={`${grid_view ? "active" : null}`}
+          onClick={() => dispatch(setGridView())}
+        >
           <BsFillGridFill />
         </button>
-        <button type="button" className={`${!grid_view ? "active" : null}`}>
+        <button
+          type="button"
+          className={`${!grid_view ? "active" : null}`}
+          onClick={() => dispatch(setListView())}
+        >
           <BsList />
         </button>
       </div>

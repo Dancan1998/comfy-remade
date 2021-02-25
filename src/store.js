@@ -6,13 +6,14 @@ import {
   productsListReducer,
   singleProductReducer,
 } from "./reducers/products_reducer";
-import { filterReducer } from "./reducers/filter_reducer";
+import { filterReducer, viewLayoutReducer } from "./reducers/filter_reducer";
 
 const reducer = combineReducers({
   sidebarContext: sidebarReducer,
   productsList: productsListReducer,
   singleProductContext: singleProductReducer,
   filterProducts: filterReducer,
+  viewLayout: viewLayoutReducer,
 });
 
 const middleware = [thunk];

@@ -29,3 +29,11 @@ export const filterProductslist = () => async (dispatch) => {
     });
   }
 };
+
+export const setGridView = () => (dispatch) => {
+  dispatch({ type: SET_GRIDVIEW });
+};
+
+export const setListView = () => (dispatch) => {
+  dispatch({ type: SET_LISTVIEW });
+};
