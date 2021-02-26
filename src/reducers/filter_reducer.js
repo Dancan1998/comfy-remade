@@ -104,10 +104,39 @@ export const filterReducer = (
     const { text, category, company, color, shipping, price } = state.filters;
     let tempProducts = [...all_products];
     //filtering
+    //text
     if (text) {
       tempProducts = tempProducts.filter((product) => {
         return product.name.toLowerCase().startsWith(text);
       });
+    }
+    //category
+    if (category !== "all") {
+      tempProducts = tempProducts.filter(
+        (product) => product.category === category
+      );
+    }
+    //company
+    if (company !== "all") {
+      tempProducts = tempProducts.filter(
+        (product) => product.company === company
+      );
+    }
+    //colors
+    if (color !== "all") {
+      tempProducts = tempProducts.filter((product) => {
+        return product.colors.find((c) => c === color);
+      });
+    }
+    //price
+    if (price) {
+      tempProducts = tempProducts.filter((product) => product.price <= price);
+    }
+    //shipping
+    if (shipping) {
+      tempProducts = tempProducts.filter(
+        (product) => product.shipping === true
+      );
     }
     return {
       ...state,
