@@ -59,10 +59,15 @@ export const updateFilters = (e) => (dispatch) => {
   if (name === "price") {
     value = Number(value);
   }
+  if (name === "shipping") {
+    value = e.target.checked;
+  }
   dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
 };
 
-export const clearFilters = () => (dispatch) => {};
+export const clearFilters = () => (dispatch) => {
+  dispatch({ type: CLEAR_FILTERS });
+};
 
 export const filteringProducts = () => (dispatch) => {
   dispatch({ type: FILTER_PRODUCTS });

@@ -1,5 +1,4 @@
 import {
-  LOAD_PRODUCTS,
   SET_LISTVIEW,
   SET_GRIDVIEW,
   UPDATE_SORT,
@@ -103,6 +102,20 @@ export const filterReducer = (
   if (action.type === FILTER_PRODUCTS) {
     console.log("filtering products");
     return { ...state };
+  }
+  if (action.type === CLEAR_FILTERS) {
+    return {
+      ...state,
+      filters: {
+        ...state.filters,
+        text: "",
+        company: "all",
+        category: "all",
+        color: "all",
+        price: state.filters.max_price,
+        shipping: false,
+      },
+    };
   }
 
   return state;
