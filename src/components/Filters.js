@@ -30,6 +30,11 @@ const Filters = () => {
     category,
   } = filters;
 
+  const categories = getUniqueValues(all_products, "category");
+  const companies = getUniqueValues(all_products, "company");
+  const colors_ = getUniqueValues(all_products, "colors");
+  console.log(colors_);
+
   return (
     <Wrapper>
       <div className="content">

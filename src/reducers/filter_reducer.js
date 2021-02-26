@@ -101,7 +101,7 @@ export const filterReducer = (
     };
   }
   if (action.type === FILTER_PRODUCTS) {
-    console.log("filtering products");
+    // console.log("filtering products");
     return { ...state };
   }
 
