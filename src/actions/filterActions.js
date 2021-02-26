@@ -50,6 +50,9 @@ export const sortProducts = () => (dispatch) => [
 export const updateFilters = (e) => (dispatch) => {
   let value = e.target.value;
   let name = e.target.name;
+  if(name === 'category'){
+    value  = e.target.textContent
+  }
   dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
 };
 
