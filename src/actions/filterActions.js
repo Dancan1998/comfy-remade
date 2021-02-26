@@ -50,8 +50,11 @@ export const sortProducts = () => (dispatch) => [
 export const updateFilters = (e) => (dispatch) => {
   let value = e.target.value;
   let name = e.target.name;
-  if(name === 'category'){
-    value  = e.target.textContent
+  if (name === "category") {
+    value = e.target.textContent;
+  }
+  if (name === "color") {
+    value = e.target.dataset.color;
   }
   dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
 };
