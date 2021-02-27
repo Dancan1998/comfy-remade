@@ -8,9 +8,7 @@ import { useSelector } from "react-redux";
 
 const CartPage = () => {
   const cartContext = useSelector((state) => state.cartContext);
-  const { cart, total_amount, total_items } = cartContext;
-  console.log("total amount", total_amount);
-  console.log("total items", total_items);
+  const { cart } = cartContext;
 
   if (cart.length < 1) {
     return (
