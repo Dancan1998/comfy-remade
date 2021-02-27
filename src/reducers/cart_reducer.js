@@ -6,8 +6,9 @@ import {
   TOGGLE_CART_ITEM_AMOUNT,
 } from "../constants";
 
-const cart_reducer = (state, action) => {
+export const cartReducer = (
+  state = { cart: [], total_amount: 0, total_items: 0, shipping_fee: 534 },
+  action
+) => {
   return state;
 };
-
-export default cart_reducer;
