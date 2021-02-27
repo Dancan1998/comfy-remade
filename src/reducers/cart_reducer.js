@@ -10,5 +10,22 @@ export const cartReducer = (
   state = { cart: [], total_amount: 0, total_items: 0, shipping_fee: 534 },
   action
 ) => {
+  if (action.type === ADD_TO_CART) {
+    const { id, color, amount, product } = action.payload;
+    const tempItem = state.cart.find((item) => item.id === id + color);
+    if (tempItem) {
+    } else {
+      const newItem = {
+        id: id + color,
+        name: product.name,
+        color,
+        amount,
+        image: product.images[0].image,
+        price: product.price,
+        max: product.countInStock,
+      };
+      return { ...state, cart: [...state.cart, newItem] };
+    }
+  }
   return state;
 };
