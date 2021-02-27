@@ -4,13 +4,13 @@ import { useCartContext } from "../context/cart_context";
 import { Link } from "react-router-dom";
 import { CartContent, PageHero } from "../components";
 import { removeItem, toggleAmount, clearCart } from "../actions/cartActions";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CartPage = () => {
-  const dispatch = useDispatch();
-
   const cartContext = useSelector((state) => state.cartContext);
-  const { cart } = cartContext;
+  const { cart, total_amount, total_items } = cartContext;
+  console.log("total amount", total_amount);
+  console.log("total items", total_items);
 
   if (cart.length < 1) {
     return (
