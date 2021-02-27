@@ -7,7 +7,7 @@ import {
   singleProductReducer,
 } from "./reducers/products_reducer";
 import { filterReducer, viewLayoutReducer } from "./reducers/filter_reducer";
-import { cartReducer } from "../reducers/cart_reducer";
+import { cartReducer } from "./reducers/cart_reducer";
 
 const reducer = combineReducers({
   sidebarContext: sidebarReducer,

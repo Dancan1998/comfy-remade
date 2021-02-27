@@ -3,11 +3,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 import AmountButtons from "./AmountButtons";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../actions/cartActions";
 
 const AddToCart = ({ single_product }) => {
-  const { countInStock, colors = [] } = single_product;
+  const { id, countInStock, colors = [] } = single_product;
   const [mainColor, setMainColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+
+  const dispatch = useDispatch();
 
   const increase = () => {
     setAmount((oldAmount) => {
@@ -56,7 +60,13 @@ const AddToCart = ({ single_product }) => {
           increase={increase}
           decrease={decrease}
         />
-        <Link to="/cart" className="btn">
+        <Link
+          to="/cart"
+          className="btn"
+          onClick={() =>
+            dispatch(addToCart(id, mainColor, amount, single_product))
+          }
+        >
           add to cart
         </Link>
       </div>
