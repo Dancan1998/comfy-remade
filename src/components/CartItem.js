@@ -15,8 +15,12 @@ const CartItem = ({ id, name, color, image, price, amount }) => {
   );
   const { single_product } = singleProductContext;
 
-  const increase = () => {};
-  const decrease = () => {};
+  const increase = () => {
+    dispatch(toggleAmount(id, "inc"));
+  };
+  const decrease = () => {
+    dispatch(toggleAmount(id, "dec"));
+  };
 
   return (
     <Wrapper>

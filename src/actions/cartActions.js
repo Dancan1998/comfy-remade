@@ -33,7 +33,13 @@ export const removeItem = (id) => (dispatch, getState) => {
   );
 };
 
-export const toggleAmount = (id, value) => (dispatch) => {};
+export const toggleAmount = (id, value) => (dispatch, getState) => {
+  dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } });
+  localStorage.setItem(
+    "cartItems",
+    JSON.stringify(getState().cartContext.cart)
+  );
+};
 
 export const clearCart = () => (dispatch, getState) => {
   dispatch({ type: CLEAR_CART });
