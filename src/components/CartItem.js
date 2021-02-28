@@ -3,11 +3,17 @@ import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
 import AmountButtons from "./AmountButtons";
 import { FaTrash } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeItem, toggleAmount } from "../actions/cartActions";
+import { Link } from "react-router-dom";
 
 const CartItem = ({ id, name, color, image, price, amount }) => {
   const dispatch = useDispatch();
+
+  const singleProductContext = useSelector(
+    (state) => state.singleProductContext
+  );
+  const { single_product } = singleProductContext;
 
   const increase = () => {};
   const decrease = () => {};
@@ -17,7 +23,9 @@ const CartItem = ({ id, name, color, image, price, amount }) => {
       <div className="title">
         <img src={image} alt={name} />
         <div>
-          <h5 className="name">{name}</h5>
+          <Link to={`/products/${single_product.id}`}>
+            <h5 className="name">{name}</h5>
+          </Link>
           <p className="color">
             color : <span style={{ background: color }}></span>
           </p>

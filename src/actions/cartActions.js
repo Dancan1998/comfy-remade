@@ -25,8 +25,20 @@ export const addToCart = (id, color, amount, product) => (
   );
 };
 
-export const removeItem = (id) => (dispatch) => {};
+export const removeItem = (id) => (dispatch, getState) => {
+  dispatch({ type: REMOVE_CART_ITEM, payload: id });
+  localStorage.setItem(
+    "cartItems",
+    JSON.stringify(getState().cartContext.cart)
+  );
+};
 
 export const toggleAmount = (id, value) => (dispatch) => {};
 
-export const clearCart = () => (dispatch) => {};
+export const clearCart = () => (dispatch, getState) => {
+  dispatch({ type: CLEAR_CART });
+  localStorage.setItem(
+    "cartItems",
+    JSON.stringify(getState().cartContext.cart)
+  );
+};
