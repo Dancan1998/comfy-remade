@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useCartContext } from "../context/cart_context";
 import { Link } from "react-router-dom";
 import CartColumns from "./CartColumns";
 import CartItem from "./CartItem";
 import CartTotals from "./CartTotals";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "../actions/cartActions";
+import { clearCart, countCartTotals } from "../actions/cartActions";
 
 const CartContent = () => {
   const dispatch = useDispatch();
 
   const cartContext = useSelector((state) => state.cartContext);
   const { cart } = cartContext;
+
+  useEffect(() => {
+    dispatch(countCartTotals());
+  }, [cart, dispatch]);
 
   return (
     <Wrapper className="section section-center">

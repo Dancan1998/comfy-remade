@@ -7,7 +7,7 @@ import {
 } from "../constants";
 
 export const cartReducer = (
-  state = { cart: [], total_amount: 0, total_items: 0, shipping_fee: 534 },
+  state = { cart: [], total_amount: 12, total_items: 12, shipping_fee: 534 },
   action
 ) => {
   if (action.type === ADD_TO_CART) {
@@ -74,6 +74,25 @@ export const cartReducer = (
       return item;
     });
     return { ...state, cart: tempCart };
+  }
+  if (action.type === COUNT_CART_TOTALS) {
+    const { total_amount, total_items } = state.cart.reduce(
+      (total, cartItem) => {
+        const { amount, price } = cartItem;
+        total.total_items += amount;
+        total.total_amount = price * amount;
+        return total;
+      },
+      {
+        total_items: 0,
+        total_amount: 0,
+      }
+    );
+    return {
+      ...state,
+      total_items,
+      total_amount,
+    };
   }
 
   return state;

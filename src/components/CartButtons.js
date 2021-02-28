@@ -2,11 +2,13 @@ import React from "react";
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar } from "../actions/productActions";
 
 const CartButtons = () => {
   const dispatch = useDispatch();
+  const cartContext = useSelector((state) => state.cartContext);
+  const { total_items } = cartContext;
 
   return (
     <Wrapper className="cart-btn-wrapper">
@@ -18,7 +20,7 @@ const CartButtons = () => {
         Cart
         <span className="cart-container">
           <FaShoppingCart />
-          <span className="cart-value">0</span>
+          <span className="cart-value">{total_items}</span>
         </span>
       </Link>
       <button type="button" className="auth-btn">

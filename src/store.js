@@ -24,19 +24,11 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
-const totalAmountFromStorage = localStorage.getItem("totalAmount")
-  ? JSON.parse(localStorage.getItem("totalAmount"))
-  : 0;
-
-const totalItemsFromStorage = localStorage.getItem("totalItems")
-  ? JSON.parse(localStorage.getItem("totalItems"))
-  : 0;
-
 const initialState = {
   cartContext: {
     cart: cartItemsFromStorage,
-    total_amount: totalAmountFromStorage,
-    total_items: totalItemsFromStorage,
+    total_amount: 0,
+    total_items: 0,
   },
 };
 
@@ -47,3 +39,11 @@ const store = createStore(
 );
 
 export default store;
+
+// const totalAmountFromStorage = localStorage.getItem("totalAmount")
+//   ? JSON.parse(localStorage.getItem("totalAmount"))
+//   : 0;
+
+// const totalItemsFromStorage = localStorage.getItem("totalItems")
+//   ? JSON.parse(localStorage.getItem("totalItems"))
+//   : 0;
