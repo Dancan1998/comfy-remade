@@ -40,6 +40,3 @@ export const register = (
     });
   }
 };
-//  error.response && error.response.data.message
-//           ? error.response.data.message
-//           : error.message,

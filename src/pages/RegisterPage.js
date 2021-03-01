@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Card, Form } from "react-bootstrap";
+import { Card, Button, Form, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { register } from "../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,21 +16,21 @@ const Registerpage = () => {
   } = userRegister;
 
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const disableButton =
     !email?.length ||
-    !firstName?.length ||
-    !lastName?.length ||
+    !first_name?.length ||
+    !last_name?.length ||
     !password?.length ||
     !confirmPassword?.length;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(register(email, firstName, lastName, password, confirmPassword));
+    dispatch(register(email, first_name, last_name, password, confirmPassword));
   };
 
   return (
@@ -57,7 +57,7 @@ const Registerpage = () => {
                   <Form.Control
                     name="first_name"
                     type="text"
-                    value={firstName}
+                    value={first_name}
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder="First Name"
                   />
@@ -68,7 +68,7 @@ const Registerpage = () => {
                   <Form.Control
                     type="text"
                     name="last_name"
-                    value={lastName}
+                    value={last_name}
                     onChange={(e) => setLastName(e.target.value)}
                     placeholder="Last Name"
                   />
@@ -95,14 +95,26 @@ const Registerpage = () => {
                     placeholder="Confirm Password"
                   />
                 </Form.Group>
-
-                <button
-                  disabled={disableButton}
-                  className="btn auth-btn"
-                  type="submit"
-                >
-                  Register
-                </button>
+                {loadingRegister ? (
+                  <Button disabled className="btn auth-btn">
+                    <Spinner
+                      as="span"
+                      animation="grow"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                    Loading...
+                  </Button>
+                ) : (
+                  <Button
+                    disabled={disableButton}
+                    className="btn auth-btn"
+                    type="submit"
+                  >
+                    Register
+                  </Button>
+                )}
               </Form>
             </Card.Text>
           </Card.Body>

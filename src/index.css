@@ -179,8 +179,8 @@ p {
   font-size: 0.875rem;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  border-radius: var(--radius);
-  border-color: transparent;
+  border-radius: var(--radius) !important;
+  border-color: transparent !important;
 }
 .btn:hover {
   color: var(--clr-primary-1) !important;
