@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <Wrapper className="page-100">
       <section>
@@ -11,17 +17,24 @@ const LoginPage = () => {
           <Card.Body>
             <Card.Title>Login</Card.Title>
             <Card.Text>
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="email">
                   <Form.Label>Email Address</Form.Label>
                   <Form.Control
                     type="email"
                     placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   ></Form.Control>
                 </Form.Group>
                 <Form.Group controlId="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Enter Password" />
+                  <Form.Control
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter Password"
+                  />
                 </Form.Group>
                 <button className="btn auth-btn" type="submit">
                   Login

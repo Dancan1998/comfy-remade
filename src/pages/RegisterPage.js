@@ -7,7 +7,7 @@ const LoginPage = () => {
   return (
     <Wrapper className="page-100">
       <section>
-        <Card style={{ width: "22rem" }}>
+        <Card style={{ width: "25rem" }}>
           <Card.Body>
             <Card.Title>Register</Card.Title>
             <Card.Text>
@@ -50,7 +50,7 @@ const LoginPage = () => {
             </Card.Text>
           </Card.Body>
         </Card>
-        <Card style={{ width: "22rem" }} className="mt-2">
+        <Card style={{ width: "25rem" }} className="mt-2">
           <Card.Body>
             <Card.Text>
               <h6>Already have an account ? </h6>{" "}
