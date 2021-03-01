@@ -10,6 +10,7 @@ import {
   Error,
   Products,
   Login,
+  Register,
 } from "./pages";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Route exact path="/checkout" component={Checkout} />
         <Route path="*" component={Error} />
       </Switch>

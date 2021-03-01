@@ -7,6 +7,7 @@ import Products from "./ProductsPage";
 import SingleProduct from "./SingleProductPage";
 import Private from "./PrivateRoute";
 import Login from "./LoginPage";
+import Register from "./RegisterPage";
 
 export {
   Home,
@@ -18,4 +19,5 @@ export {
   Products,
   SingleProduct,
   Login,
+  Register,
 };
