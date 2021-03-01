@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";

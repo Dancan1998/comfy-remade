@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userActions";
 
-const LoginPage = ({ history }) => {
+const LoginPage = ({ history, location }) => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
@@ -21,13 +21,15 @@ const LoginPage = ({ history }) => {
 
   const disableButton = !email?.length || !password?.length;
 
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
   useEffect(() => {
     if (userInfo) {
       if (userInfo.data) {
-        history.push("/");
+        history.push(redirect);
       }
     }
-  }, [history, userInfo]);
+  }, [history, userInfo, redirect]);
 
   return (
     <Wrapper className="page-100">

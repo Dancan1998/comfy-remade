@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar } from "../actions/productActions";
@@ -8,7 +8,6 @@ import { countCartTotals } from "../actions/cartActions";
 import { logout } from "../actions/userActions";
 
 const CartButtons = () => {
-  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const cartContext = useSelector((state) => state.cartContext);
   const { total_items, cart } = cartContext;

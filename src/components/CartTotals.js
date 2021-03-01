@@ -1,14 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
 
 const CartTotals = () => {
+  const history = useHistory();
+
   const cartContext = useSelector((state) => state.cartContext);
   const { total_amount } = cartContext;
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const shipping_fee = 25000;
+
+  const redirectToCheckout = () => {
+    history.push("/login?redirect=checkout");
+  };
 
   return (
     <Wrapper>
@@ -25,9 +34,15 @@ const CartTotals = () => {
             order total :<span>{formatPrice(total_amount + shipping_fee)}</span>
           </h4>
         </article>
-        <Link to="/checkout" className="btn">
-          proceed to checkout
-        </Link>
+        {userInfo && userInfo.data ? (
+          <Link to="/checkout" className="btn">
+            proceed to checkout
+          </Link>
+        ) : (
+          <button className="btn" onClick={redirectToCheckout}>
+            Login
+          </button>
+        )}
       </div>
     </Wrapper>
   );
