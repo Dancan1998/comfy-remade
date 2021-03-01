@@ -9,6 +9,7 @@ import {
   About,
   Error,
   Products,
+  Login,
 } from "./pages";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:id" component={SingleProduct} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/checkout" component={Checkout} />
         <Route path="*" component={Error} />
       </Switch>
