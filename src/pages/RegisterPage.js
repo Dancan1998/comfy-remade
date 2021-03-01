@@ -2,8 +2,19 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { register } from "../actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Registerpage = () => {
+  const dispatch = useDispatch();
+
+  const userRegister = useSelector((state) => state.userRegister);
+  const {
+    loading: loadingRegister,
+    error: loadingError,
+    userInfo: userRegisterInfo,
+  } = userRegister;
+
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -17,6 +28,11 @@ const Registerpage = () => {
     !password?.length ||
     !confirmPassword?.length;
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(register(email, firstName, lastName, password, confirmPassword));
+  };
+
   return (
     <Wrapper className="page-100">
       <section>
@@ -24,7 +40,7 @@ const Registerpage = () => {
           <Card.Body>
             <Card.Title>Register</Card.Title>
             <Card.Text as="div">
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="email">
                   <Form.Label>Email Address</Form.Label>
                   <Form.Control
