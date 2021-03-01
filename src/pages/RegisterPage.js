@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Registerpage = () => {
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const disableButton =
+    !email?.length ||
+    !firstName?.length ||
+    !lastName?.length ||
+    !password?.length ||
+    !confirmPassword?.length;
+
   return (
     <Wrapper className="page-100">
       <section>
@@ -16,34 +29,62 @@ const Registerpage = () => {
                   <Form.Label>Email Address</Form.Label>
                   <Form.Control
                     type="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter email"
                   ></Form.Control>
                 </Form.Group>
 
                 <Form.Group controlId="first_name">
                   <Form.Label>First Name</Form.Label>
-                  <Form.Control type="text" placeholder="First Name" />
+                  <Form.Control
+                    name="first_name"
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="First Name"
+                  />
                 </Form.Group>
 
                 <Form.Group controlId="last_name">
                   <Form.Label>Last Name</Form.Label>
-                  <Form.Control type="text" placeholder="Last Name" />
+                  <Form.Control
+                    type="text"
+                    name="last_name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder="Last Name"
+                  />
                 </Form.Group>
 
                 <Form.Group controlId="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Enter Password" />
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter Password"
+                  />
                 </Form.Group>
 
                 <Form.Group controlId="password1">
                   <Form.Label>Confirm Password</Form.Label>
                   <Form.Control
                     type="password"
+                    name="password1"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Confirm Password"
                   />
                 </Form.Group>
 
-                <button className="btn auth-btn" type="submit">
+                <button
+                  disabled={disableButton}
+                  className="btn auth-btn"
+                  type="submit"
+                >
                   Register
                 </button>
               </Form>
