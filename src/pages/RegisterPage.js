@@ -45,7 +45,7 @@ const Registerpage = ({ history }) => {
   }, [errorRegister]);
 
   useEffect(() => {
-    if (userRegisterInfo) {
+    if (userRegisterInfo && userRegisterInfo.data) {
       history.push("/login");
     }
   }, [userRegisterInfo, history]);

@@ -5,12 +5,16 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar } from "../actions/productActions";
 import { countCartTotals } from "../actions/cartActions";
+import { logout } from "../actions/userActions";
 
 const CartButtons = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const cartContext = useSelector((state) => state.cartContext);
   const { total_items, cart } = cartContext;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   useEffect(() => {
     dispatch(countCartTotals());
@@ -29,8 +33,11 @@ const CartButtons = () => {
           <span className="cart-value">{total_items}</span>
         </span>
       </Link>
-
-      {pathname === "/login" || pathname === "/register" ? null : (
+      {userInfo && userInfo.data ? (
+        <button className="auth-btn" onClick={() => dispatch(logout())}>
+          Logout <FaUserMinus />
+        </button>
+      ) : (
         <Link to="/login" className="auth-btn">
           Login <FaUserPlus />
         </Link>
@@ -97,3 +104,8 @@ export default CartButtons;
 /* <button type="button" className="auth-btn">
         Login <FaUserPlus />
       </button> */
+// {pathname === "/login" || pathname === "/register" ? null : (
+//         <Link to="/login" className="auth-btn">
+//           Login <FaUserPlus />
+//         </Link>
+//       )}

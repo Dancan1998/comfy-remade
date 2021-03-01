@@ -5,6 +5,7 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_LOGOUT,
 } from "../constants";
 import http from "../http-common";
 
@@ -32,6 +33,11 @@ export const login = (email, password) => async (dispatch) => {
       payload: error.response ? error.response.data : error.message,
     });
   }
+};
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("userInfo");
+  dispatch({ type: USER_LOGOUT });
 };
 
 export const register = (

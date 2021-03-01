@@ -83,7 +83,7 @@ const LoginPage = ({ history }) => {
         <Card style={{ width: "22rem" }} className="mt-2">
           <Card.Body>
             <Card.Text as="div">
-              <h6>Need an account ? </h6>{" "}
+              <h6>Need an account ? </h6>
               <Link to="/register" className="btn auth-btn">
                 Register
               </Link>
