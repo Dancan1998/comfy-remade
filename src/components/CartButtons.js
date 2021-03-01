@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSidebar } from "../actions/productActions";
 import { countCartTotals } from "../actions/cartActions";
 
 const CartButtons = () => {
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const cartContext = useSelector((state) => state.cartContext);
   const { total_items, cart } = cartContext;
@@ -28,12 +29,12 @@ const CartButtons = () => {
           <span className="cart-value">{total_items}</span>
         </span>
       </Link>
-      {/* <button type="button" className="auth-btn">
-        Login <FaUserPlus />
-      </button> */}
-      <Link to="/login" className="auth-btn">
-        Login <FaUserPlus />
-      </Link>
+
+      {pathname === "/login" || pathname === "/register" ? null : (
+        <Link to="/login" className="auth-btn">
+          Login <FaUserPlus />
+        </Link>
+      )}
     </Wrapper>
   );
 };
@@ -92,3 +93,7 @@ const Wrapper = styled.div`
   }
 `;
 export default CartButtons;
+
+/* <button type="button" className="auth-btn">
+        Login <FaUserPlus />
+      </button> */

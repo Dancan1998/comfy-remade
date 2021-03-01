@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+const Registerpage = () => {
   return (
     <Wrapper className="page-100">
       <section>
         <Card style={{ width: "25rem" }}>
           <Card.Body>
             <Card.Title>Register</Card.Title>
-            <Card.Text>
+            <Card.Text as="div">
               <Form>
                 <Form.Group controlId="email">
                   <Form.Label>Email Address</Form.Label>
@@ -52,7 +52,7 @@ const LoginPage = () => {
         </Card>
         <Card style={{ width: "25rem" }} className="mt-2">
           <Card.Body>
-            <Card.Text>
+            <Card.Text as="div">
               <h6>Already have an account ? </h6>{" "}
               <Link to="/login" className="btn auth-btn">
                 Login
@@ -83,4 +83,4 @@ const Wrapper = styled.main`
   }
 `;
 
-export default LoginPage;
+export default Registerpage;

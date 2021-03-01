@@ -16,7 +16,7 @@ const LoginPage = () => {
         <Card style={{ width: "22rem" }}>
           <Card.Body>
             <Card.Title>Login</Card.Title>
-            <Card.Text>
+            <Card.Text as="div">
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="email">
                   <Form.Label>Email Address</Form.Label>
@@ -45,7 +45,7 @@ const LoginPage = () => {
         </Card>
         <Card style={{ width: "22rem" }} className="mt-2">
           <Card.Body>
-            <Card.Text>
+            <Card.Text as="div">
               <h6>Need an account ? </h6>{" "}
               <Link to="/register" className="btn auth-btn">
                 Register
