@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Card, Button, Form, Spinner } from "react-bootstrap";
+import { Card, Button, Form, Spinner, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { register } from "../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 
-const Registerpage = () => {
+const Registerpage = ({ history }) => {
   const dispatch = useDispatch();
 
   const userRegister = useSelector((state) => state.userRegister);
   const {
     loading: loadingRegister,
-    error: loadingError,
+    error: errorRegister,
     userInfo: userRegisterInfo,
   } = userRegister;
 
@@ -20,6 +20,7 @@ const Registerpage = () => {
   const [last_name, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
 
   const disableButton =
     !email?.length ||
@@ -30,8 +31,24 @@ const Registerpage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFieldErrors({});
     dispatch(register(email, first_name, last_name, password, confirmPassword));
   };
+
+  useEffect(() => {
+    if (errorRegister) {
+      for (const item in errorRegister) {
+        setFieldErrors({ ...fieldErrors, [item]: errorRegister[item][0] });
+        console.log(errorRegister[item][0]);
+      }
+    }
+  }, [errorRegister]);
+
+  useEffect(() => {
+    if (userRegisterInfo) {
+      history.push("/login");
+    }
+  }, [userRegisterInfo, history]);
 
   return (
     <Wrapper className="page-100">
@@ -50,6 +67,11 @@ const Registerpage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter email"
                   ></Form.Control>
+                  {fieldErrors.email && (
+                    <Alert variant="danger" className="mt-2">
+                      {fieldErrors.email}
+                    </Alert>
+                  )}
                 </Form.Group>
 
                 <Form.Group controlId="first_name">
@@ -61,6 +83,11 @@ const Registerpage = () => {
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder="First Name"
                   />
+                  {fieldErrors.first_name && (
+                    <Alert variant="danger" className="mt-2">
+                      {fieldErrors.first_name}
+                    </Alert>
+                  )}
                 </Form.Group>
 
                 <Form.Group controlId="last_name">
@@ -72,6 +99,11 @@ const Registerpage = () => {
                     onChange={(e) => setLastName(e.target.value)}
                     placeholder="Last Name"
                   />
+                  {fieldErrors.last_name && (
+                    <Alert variant="danger" className="mt-2">
+                      {fieldErrors.last_name}
+                    </Alert>
+                  )}
                 </Form.Group>
 
                 <Form.Group controlId="password">
@@ -83,6 +115,11 @@ const Registerpage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter Password"
                   />
+                  {fieldErrors.password && (
+                    <Alert variant="danger" className="mt-2">
+                      {fieldErrors.password}
+                    </Alert>
+                  )}
                 </Form.Group>
 
                 <Form.Group controlId="password1">
@@ -94,6 +131,11 @@ const Registerpage = () => {
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="Confirm Password"
                   />
+                  {fieldErrors.password1 && (
+                    <Alert variant="danger" className="mt-2">
+                      {fieldErrors.password1}
+                    </Alert>
+                  )}
                 </Form.Group>
                 {loadingRegister ? (
                   <Button disabled className="btn auth-btn">
