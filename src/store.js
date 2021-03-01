@@ -8,6 +8,7 @@ import {
 } from "./reducers/products_reducer";
 import { filterReducer, viewLayoutReducer } from "./reducers/filter_reducer";
 import { cartReducer } from "./reducers/cart_reducer";
+import { userLoginReducer } from "./reducers/user_reducer";
 
 const reducer = combineReducers({
   sidebarContext: sidebarReducer,
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   filterProducts: filterReducer,
   viewLayout: viewLayoutReducer,
   cartContext: cartReducer,
+  userLogin: userLoginReducer,
 });
 
 const middleware = [thunk];
