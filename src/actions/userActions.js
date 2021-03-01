@@ -8,7 +8,31 @@ import {
 } from "../constants";
 import http from "../http-common";
 
-export const login = () => async (dispatch) => {};
+export const login = (email, password) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_LOGIN_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const data = await http.post(
+      "/api/auth/login",
+      { email, password },
+      config
+    );
+
+    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+    localStorage.setItem("userInfo", JSON.stringify(data));
+  } catch (error) {
+    dispatch({
+      type: USER_LOGIN_FAIL,
+      payload: error.response ? error.response.data : error.message,
+    });
+  }
+};
 
 export const register = (
   email,
@@ -36,7 +60,7 @@ export const register = (
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
-      payload: error.response.data,
+      payload: error.response ? error.response.data : error.message,
     });
   }
 };

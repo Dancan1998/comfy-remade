@@ -1,15 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Card, Form } from "react-bootstrap";
+import { Card, Form, Button, Spinner, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../actions/userActions";
 
-const LoginPage = () => {
+const LoginPage = ({ history }) => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const userLogin = useSelector((state) => state.userLogin);
+  const { loading, error, userInfo } = userLogin;
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(login(email, password));
   };
+
+  const disableButton = !email?.length || !password?.length;
+
+  useEffect(() => {
+    if (userInfo) {
+      if (userInfo.data) {
+        history.push("/");
+      }
+    }
+  }, [history, userInfo]);
+
   return (
     <Wrapper className="page-100">
       <section>
@@ -18,6 +37,7 @@ const LoginPage = () => {
             <Card.Title>Login</Card.Title>
             <Card.Text as="div">
               <Form onSubmit={handleSubmit}>
+                {error && <Alert variant="danger">{error.detail}</Alert>}
                 <Form.Group controlId="email">
                   <Form.Label>Email Address</Form.Label>
                   <Form.Control
@@ -36,9 +56,26 @@ const LoginPage = () => {
                     placeholder="Enter Password"
                   />
                 </Form.Group>
-                <button className="btn auth-btn" type="submit">
-                  Login
-                </button>
+                {loading ? (
+                  <Button disabled className="btn auth-btn">
+                    <Spinner
+                      as="span"
+                      animation="grow"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                    Loading...
+                  </Button>
+                ) : (
+                  <Button
+                    disabled={disableButton}
+                    className="btn auth-btn"
+                    type="submit"
+                  >
+                    Login
+                  </Button>
+                )}
               </Form>
             </Card.Text>
           </Card.Body>

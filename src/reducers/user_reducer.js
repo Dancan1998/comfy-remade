@@ -14,6 +14,7 @@ export const userLoginReducer = (
   if (action.type === USER_LOGIN_REQUEST) {
     return {
       ...state,
+      error: false,
       loading: true,
     };
   }
@@ -21,6 +22,7 @@ export const userLoginReducer = (
     return {
       ...state,
       loading: false,
+      error: false,
       userInfo: action.payload,
     };
   }

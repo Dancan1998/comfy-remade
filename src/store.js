@@ -27,11 +27,20 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
+
 const initialState = {
   cartContext: {
     cart: cartItemsFromStorage,
     total_amount: 0,
     total_items: 0,
+  },
+  userLogin: {
+    userInfo: userInfoFromStorage,
+    loading: false,
+    error: false,
   },
 };
 
@@ -42,11 +51,3 @@ const store = createStore(
 );
 
 export default store;
-
-// const totalAmountFromStorage = localStorage.getItem("totalAmount")
-//   ? JSON.parse(localStorage.getItem("totalAmount"))
-//   : 0;
-
-// const totalItemsFromStorage = localStorage.getItem("totalItems")
-//   ? JSON.parse(localStorage.getItem("totalItems"))
-//   : 0;
