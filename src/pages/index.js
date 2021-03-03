@@ -8,6 +8,7 @@ import SingleProduct from "./SingleProductPage";
 import Private from "./PrivateRoute";
 import Login from "./LoginPage";
 import Register from "./RegisterPage";
+import Shipping from "./ShippingProfilePage";
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   SingleProduct,
   Login,
   Register,
+  Shipping,
 };

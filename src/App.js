@@ -11,6 +11,7 @@ import {
   Products,
   Login,
   Register,
+  Shipping,
 } from "./pages";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/shipping" component={Shipping} />
         <Route path="*" component={Error} />
       </Switch>
       <Footer />

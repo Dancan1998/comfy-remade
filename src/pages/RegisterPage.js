@@ -39,14 +39,13 @@ const Registerpage = ({ history }) => {
     if (errorRegister) {
       for (const item in errorRegister) {
         setFieldErrors({ ...fieldErrors, [item]: errorRegister[item][0] });
-        // setFieldErrors(oldErrors =>{...oldErrors, [item]:errorRegister[item][0]})
       }
     }
   }, [errorRegister]);
 
   useEffect(() => {
     if (userRegisterInfo && userRegisterInfo.data) {
-      history.push("/login");
+      history.push("/login?redirect=shipping");
     }
   }, [userRegisterInfo, history]);
 

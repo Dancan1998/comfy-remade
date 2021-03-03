@@ -74,13 +74,21 @@ export const register = (
   }
 };
 
-export const shipping = (county, town, contact) => async (dispatch) => {
+export const shipping = (county, town, contact) => async (
+  dispatch,
+  getState
+) => {
   try {
     dispatch({ type: USER_SHIPPING_PROFILE_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
     const config = {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.data.tokens.access}`,
       },
     };
 

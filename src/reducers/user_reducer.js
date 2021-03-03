@@ -91,8 +91,9 @@ export const shippingProfileReducer = (
   if (action.type === USER_SHIPPING_PROFILE_FAIL) {
     return {
       ...state,
-      laoding: false,
+      loading: false,
       error: action.payload,
     };
   }
+  return state;
 };
