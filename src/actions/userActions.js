@@ -6,6 +6,9 @@ import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
   USER_LOGOUT,
+  USER_SHIPPING_PROFILE_REQUEST,
+  USER_SHIPPING_PROFILE_SUCCESS,
+  USER_SHIPPING_PROFILE_FAIL,
 } from "../constants";
 import http from "../http-common";
 
@@ -66,6 +69,31 @@ export const register = (
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
+      payload: error.response ? error.response.data : error.message,
+    });
+  }
+};
+
+export const shipping = (county, town, contact) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_SHIPPING_PROFILE_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const data = await http.post(
+      "/api/shipping",
+      { county, town, contact },
+      config
+    );
+
+    dispatch({ type: USER_SHIPPING_PROFILE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: USER_SHIPPING_PROFILE_FAIL,
       payload: error.response ? error.response.data : error.message,
     });
   }

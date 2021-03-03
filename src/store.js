@@ -8,7 +8,11 @@ import {
 } from "./reducers/products_reducer";
 import { filterReducer, viewLayoutReducer } from "./reducers/filter_reducer";
 import { cartReducer } from "./reducers/cart_reducer";
-import { userRegisterReducer, userLoginReducer } from "./reducers/user_reducer";
+import {
+  userRegisterReducer,
+  userLoginReducer,
+  shippingProfileReducer,
+} from "./reducers/user_reducer";
 
 const reducer = combineReducers({
   sidebarContext: sidebarReducer,
@@ -19,6 +23,7 @@ const reducer = combineReducers({
   cartContext: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  shippingProfile: shippingProfileReducer,
 });
 
 const middleware = [thunk];

@@ -39,7 +39,7 @@ const Registerpage = ({ history }) => {
     if (errorRegister) {
       for (const item in errorRegister) {
         setFieldErrors({ ...fieldErrors, [item]: errorRegister[item][0] });
-        console.log(errorRegister[item][0]);
+        // setFieldErrors(oldErrors =>{...oldErrors, [item]:errorRegister[item][0]})
       }
     }
   }, [errorRegister]);
