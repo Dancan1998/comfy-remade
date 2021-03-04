@@ -8,12 +8,10 @@ const CartTotals = () => {
   const history = useHistory();
 
   const cartContext = useSelector((state) => state.cartContext);
-  const { total_amount } = cartContext;
+  let { total_amount, order_totals, shipping_cost } = cartContext;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
-  const shipping_fee = 25000;
 
   const redirectToCheckout = () => {
     history.push("/login?redirect=checkout");
@@ -27,11 +25,11 @@ const CartTotals = () => {
             subtotal : <span>{formatPrice(total_amount)}</span>
           </h5>
           <p>
-            shipping fee : <span>{formatPrice(shipping_fee)}</span>
+            shipping fee : <span>{formatPrice(shipping_cost)}</span>
           </p>
           <hr />
           <h4>
-            order total :<span>{formatPrice(total_amount + shipping_fee)}</span>
+            order total :<span>{formatPrice(order_totals)}</span>
           </h4>
         </article>
         {userInfo && userInfo.data ? (

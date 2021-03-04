@@ -41,6 +41,8 @@ const initialState = {
     cart: cartItemsFromStorage,
     total_amount: 0,
     total_items: 0,
+    shipping_cost: 0,
+    order_totals: 0,
   },
   userLogin: {
     userInfo: userInfoFromStorage,

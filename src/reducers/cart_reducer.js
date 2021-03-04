@@ -7,7 +7,13 @@ import {
 } from "../constants";
 
 export const cartReducer = (
-  state = { cart: [], total_amount: 12, total_items: 12, shipping_fee: 534 },
+  state = {
+    cart: [],
+    total_amount: 0,
+    total_items: 0,
+    order_totals: 0,
+    shipping_cost: 0,
+  },
   action
 ) => {
   if (action.type === ADD_TO_CART) {
@@ -88,10 +94,14 @@ export const cartReducer = (
         total_amount: 0,
       }
     );
+
+    state.shipping_cost = total_amount > 50000 ? 10000 : 20000;
+
     return {
       ...state,
       total_items,
       total_amount,
+      order_totals: total_amount + state.shipping_cost,
     };
   }
 
