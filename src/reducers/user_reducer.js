@@ -12,6 +12,9 @@ import {
   GET_SHIPPING_PROFILE_REQUEST,
   GET_SHIPPING_PROFILE_SUCCESS,
   GET_SHIPPING_PROFILE_FAIL,
+  LOGGED_USER_SHIPPING_PROFILE_REQUEST,
+  LOGGED_USER_SHIPPING_PROFILE_SUCCESS,
+  LOGGED_USER_SHIPPING_PROFILE_FAIL,
 } from "../constants";
 
 export const userLoginReducer = (
@@ -119,6 +122,33 @@ export const getShippingProfileReducer = (
     };
   }
   if (action.type === GET_SHIPPING_PROFILE_FAIL) {
+    return {
+      ...state,
+      loading: false,
+      error: action.payload,
+    };
+  }
+  return state;
+};
+
+export const loggedUserShippingProfileReducer = (
+  state = { loading: false, error: false, shippingProfile: {} },
+  action
+) => {
+  if (action.type === LOGGED_USER_SHIPPING_PROFILE_REQUEST) {
+    return {
+      ...state,
+      loading: true,
+    };
+  }
+  if (action.type === LOGGED_USER_SHIPPING_PROFILE_SUCCESS) {
+    return {
+      ...state,
+      loading: false,
+      shippingProfile: action.payload,
+    };
+  }
+  if (action.type === LOGGED_USER_SHIPPING_PROFILE_FAIL) {
     return {
       ...state,
       loading: false,

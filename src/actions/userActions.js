@@ -12,6 +12,9 @@ import {
   GET_SHIPPING_PROFILE_REQUEST,
   GET_SHIPPING_PROFILE_SUCCESS,
   GET_SHIPPING_PROFILE_FAIL,
+  LOGGED_USER_SHIPPING_PROFILE_REQUEST,
+  LOGGED_USER_SHIPPING_PROFILE_FAIL,
+  LOGGED_USER_SHIPPING_PROFILE_SUCCESS,
 } from "../constants";
 import http from "../http-common";
 
@@ -131,6 +134,35 @@ export const getuserShippingProfile = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: GET_SHIPPING_PROFILE_FAIL,
+      payload: error.response ? error.response.data : error.message,
+    });
+  }
+};
+
+export const logged_user_shipping_profile = (id) => async (
+  dispatch,
+  getState
+) => {
+  try {
+    dispatch({ type: LOGGED_USER_SHIPPING_PROFILE_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.data.tokens.access}`,
+      },
+    };
+
+    const { data } = await http.get(`/api/shipping/${id}`, config);
+
+    dispatch({ type: LOGGED_USER_SHIPPING_PROFILE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: LOGGED_USER_SHIPPING_PROFILE_FAIL,
       payload: error.response ? error.response.data : error.message,
     });
   }
