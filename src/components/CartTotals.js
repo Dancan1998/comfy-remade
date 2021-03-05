@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getuserShippingProfile } from "../actions/userActions";
+import { logged_user_shipping_profile } from "../actions/userActions";
 
 const CartTotals = () => {
   const dispatch = useDispatch();
@@ -13,12 +13,25 @@ const CartTotals = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const getShippingProfile = useSelector((state) => state.getShippingProfile);
-  const { loading, error, getshippingProfile } = getShippingProfile;
+  const gettingShippingProfile = useSelector(
+    (state) => state.gettingShippingProfile
+  );
+  const { getshippingProfile = [{ id: 0 }] } = gettingShippingProfile;
+
+  const getLoggedUserAddress = useSelector(
+    (state) => state.getLoggedUserShippingProfile
+  );
+  const { shippingProfile: loggedUserShippingAddress } = getLoggedUserAddress;
+  console.log(loggedUserShippingAddress);
 
   useEffect(() => {
-    dispatch(getuserShippingProfile());
-  }, [dispatch]);
+    if (userInfo && userInfo.data) {
+      if (getshippingProfile && getshippingProfile[0]) {
+        const { id } = getshippingProfile[0];
+        dispatch(logged_user_shipping_profile(id));
+      }
+    }
+  }, [dispatch, getshippingProfile, userInfo]);
 
   return (
     <Wrapper>

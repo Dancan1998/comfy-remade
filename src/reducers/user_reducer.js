@@ -105,7 +105,7 @@ export const shippingProfileReducer = (
 };
 
 export const getShippingProfileReducer = (
-  state = { loading: false, error: false, getshippingProfile: {} },
+  state = { loading: false, error: false, getshippingProfile: [] },
   action
 ) => {
   if (action.type === GET_SHIPPING_PROFILE_REQUEST) {

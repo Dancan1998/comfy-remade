@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { CartContent, PageHero } from "../components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getuserShippingProfile } from "../actions/userActions";
 
 const CartPage = () => {
+  // const history = useHistory();
+  const dispatch = useDispatch();
   const cartContext = useSelector((state) => state.cartContext);
   const { cart } = cartContext;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const gettingShippingProfile = useSelector(
+    (state) => state.gettingShippingProfile
+  );
+  const { getshippingProfile } = gettingShippingProfile;
+  console.log(getshippingProfile);
+
+  useEffect(() => {
+    if (userInfo && userInfo.data) {
+      dispatch(getuserShippingProfile());
+    }
+  }, [dispatch, userInfo]);
 
   if (cart.length < 1) {
     return (

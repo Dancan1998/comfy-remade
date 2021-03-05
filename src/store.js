@@ -26,7 +26,7 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   shippingProfile: shippingProfileReducer,
-  getShippingProfile: getShippingProfileReducer,
+  gettingShippingProfile: getShippingProfileReducer,
   getLoggedUserShippingProfile: loggedUserShippingProfileReducer,
 });
 
