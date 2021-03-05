@@ -15,6 +15,7 @@ import {
   LOGGED_USER_SHIPPING_PROFILE_REQUEST,
   LOGGED_USER_SHIPPING_PROFILE_FAIL,
   LOGGED_USER_SHIPPING_PROFILE_SUCCESS,
+  LOGGED_USER_SHIPPING_PROFILE_RESET,
 } from "../constants";
 import http from "../http-common";
 
@@ -47,6 +48,7 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
+  dispatch({ type: LOGGED_USER_SHIPPING_PROFILE_RESET });
 };
 
 export const register = (

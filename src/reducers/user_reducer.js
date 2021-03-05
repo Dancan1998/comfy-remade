@@ -15,6 +15,7 @@ import {
   LOGGED_USER_SHIPPING_PROFILE_REQUEST,
   LOGGED_USER_SHIPPING_PROFILE_SUCCESS,
   LOGGED_USER_SHIPPING_PROFILE_FAIL,
+  LOGGED_USER_SHIPPING_PROFILE_RESET,
 } from "../constants";
 
 export const userLoginReducer = (
@@ -154,6 +155,9 @@ export const loggedUserShippingProfileReducer = (
       loading: false,
       error: action.payload,
     };
+  }
+  if (action.type === LOGGED_USER_SHIPPING_PROFILE_RESET) {
+    return {};
   }
   return state;
 };
