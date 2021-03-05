@@ -9,6 +9,9 @@ import {
   USER_SHIPPING_PROFILE_REQUEST,
   USER_SHIPPING_PROFILE_SUCCESS,
   USER_SHIPPING_PROFILE_FAIL,
+  GET_SHIPPING_PROFILE_REQUEST,
+  GET_SHIPPING_PROFILE_SUCCESS,
+  GET_SHIPPING_PROFILE_FAIL,
 } from "../constants";
 
 export const userLoginReducer = (
@@ -89,6 +92,33 @@ export const shippingProfileReducer = (
     };
   }
   if (action.type === USER_SHIPPING_PROFILE_FAIL) {
+    return {
+      ...state,
+      loading: false,
+      error: action.payload,
+    };
+  }
+  return state;
+};
+
+export const getShippingProfile = (
+  state = { loading: false, error: false, getShippingProfile: {} },
+  action
+) => {
+  if (action.type === GET_SHIPPING_PROFILE_REQUEST) {
+    return {
+      ...state,
+      loading: true,
+    };
+  }
+  if (action.type === GET_SHIPPING_PROFILE_SUCCESS) {
+    return {
+      ...state,
+      loading: false,
+      getShippingProfile: action.payload,
+    };
+  }
+  if (action.type === GET_SHIPPING_PROFILE_FAIL) {
     return {
       ...state,
       loading: false,

@@ -9,6 +9,9 @@ import {
   USER_SHIPPING_PROFILE_REQUEST,
   USER_SHIPPING_PROFILE_SUCCESS,
   USER_SHIPPING_PROFILE_FAIL,
+  GET_SHIPPING_PROFILE_REQUEST,
+  GET_SHIPPING_PROFILE_SUCCESS,
+  GET_SHIPPING_PROFILE_FAIL,
 } from "../constants";
 import http from "../http-common";
 
@@ -102,6 +105,21 @@ export const shipping = (county, town, contact) => async (
   } catch (error) {
     dispatch({
       type: USER_SHIPPING_PROFILE_FAIL,
+      payload: error.response ? error.response.data : error.message,
+    });
+  }
+};
+
+export const getShippingProfile = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_SHIPPING_PROFILE_REQUEST });
+
+    const { data } = await http.get(`/api/shipping/${id}`);
+
+    dispatch({ type: GET_SHIPPING_PROFILE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_SHIPPING_PROFILE_FAIL,
       payload: error.response ? error.response.data : error.message,
     });
   }
