@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { getuserShippingProfile } from "../actions/userActions";
 
 const CartTotals = () => {
+  const dispatch = useDispatch();
   const cartContext = useSelector((state) => state.cartContext);
   let { total_amount, order_totals, shipping_cost } = cartContext;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const getShippingProfile = useSelector((state) => state.getShippingProfile);
+  const { loading, error, getshippingProfile } = getShippingProfile;
+
+  useEffect(() => {
+    dispatch(getuserShippingProfile());
+  }, [dispatch]);
 
   return (
     <Wrapper>

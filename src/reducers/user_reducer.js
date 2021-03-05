@@ -101,8 +101,8 @@ export const shippingProfileReducer = (
   return state;
 };
 
-export const getShippingProfile = (
-  state = { loading: false, error: false, getShippingProfile: {} },
+export const getShippingProfileReducer = (
+  state = { loading: false, error: false, getshippingProfile: {} },
   action
 ) => {
   if (action.type === GET_SHIPPING_PROFILE_REQUEST) {
@@ -115,7 +115,7 @@ export const getShippingProfile = (
     return {
       ...state,
       loading: false,
-      getShippingProfile: action.payload,
+      getshippingProfile: action.payload,
     };
   }
   if (action.type === GET_SHIPPING_PROFILE_FAIL) {

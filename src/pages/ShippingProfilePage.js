@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Card, Button, Form, Spinner, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { shipping } from "../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 

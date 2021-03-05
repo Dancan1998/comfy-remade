@@ -110,11 +110,22 @@ export const shipping = (county, town, contact) => async (
   }
 };
 
-export const getShippingProfile = (id) => async (dispatch) => {
+export const getuserShippingProfile = () => async (dispatch, getState) => {
   try {
     dispatch({ type: GET_SHIPPING_PROFILE_REQUEST });
 
-    const { data } = await http.get(`/api/shipping/${id}`);
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.data.tokens.access}`,
+      },
+    };
+
+    const { data } = await http.get(`/api/shipping`, config);
 
     dispatch({ type: GET_SHIPPING_PROFILE_SUCCESS, payload: data });
   } catch (error) {
