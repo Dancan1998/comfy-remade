@@ -18,7 +18,6 @@ const CartPage = () => {
     (state) => state.gettingShippingProfile
   );
   const { getshippingProfile } = gettingShippingProfile;
-  console.log(getshippingProfile);
 
   useEffect(() => {
     if (userInfo && userInfo.data) {

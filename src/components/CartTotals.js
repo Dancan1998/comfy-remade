@@ -22,7 +22,6 @@ const CartTotals = () => {
     (state) => state.getLoggedUserShippingProfile
   );
   const { shippingProfile: loggedUserShippingAddress } = getLoggedUserAddress;
-  console.log(loggedUserShippingAddress);
 
   useEffect(() => {
     if (userInfo && userInfo.data) {
