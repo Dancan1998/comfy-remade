@@ -15,14 +15,6 @@ export const addToCart = (id, color, amount, product) => (
     "cartItems",
     JSON.stringify(getState().cartContext.cart)
   );
-  // localStorage.setItem(
-  //   "totalAmount",
-  //   JSON.stringify(getState().cartContext.total_amount)
-  // );
-  // localStorage.setItem(
-  //   "totalItems",
-  //   JSON.stringify(getState().cartContext.total_items)
-  // );
 };
 
 export const removeItem = (id) => (dispatch, getState) => {
